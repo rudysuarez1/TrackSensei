@@ -15,4 +15,3 @@ TrackSensei is a GPS-based data gathering tool designed to run on the Jetson Nan
 - (Optional) USB GPS or other sensor modules
 
 ---
-

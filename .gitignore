@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Poetry
+poetry.lock
+
+# Logs and data
+*.log
+*.csv
+*.sqlite3
+data/
+logs/
+
+# Python dotenv
+.env
+
+# Test coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+.cache
+
+# Pytest
+.pytest_cache/
+
+# MyPy / Pyright / Pyre
+.mypy_cache/
+.dmypy.json
+pyrightconfig.json
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Jetson-specific temporary files
+*.swap
+*.bak
+
+# Jupyter notebooks (if used later)
+.ipynb_checkpoints/
+
+# Backup files
+*~

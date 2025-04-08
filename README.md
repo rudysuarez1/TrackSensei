@@ -1,64 +1,102 @@
-🏎️ TrackSensei
+# 🛰️ TrackSensei Telemetry 🛰️
 
-TrackSensei is a real-time data gathering and analysis application built for the Jetson Nano. It’s designed to help motorsport enthusiasts and engineers collect detailed telemetry — starting with GPS data — to analyze driver performance lap-by-lap.
+This is the **on-device data collection module** for the TrackSensei system.
+It runs on a Jetson Nano and records real-time telemetry using GPS and sensor data during racing sessions. The data is later uploaded to the TrackSensei server for analysis and feedback.
 
-📍 Current Features
+---
 
-Real-time GPS data logging via GNSS module (e.g. Waveshare LC29H)
+## 🚀 Setup
 
-Lightweight and portable Python architecture
+### 1. Clone the repository and install dependencies with Poetry
 
-Time-stamped raw NMEA sentence logging
+```bash
+git clone https://github.com/rudysuarez1/TrackSensei-Telemetry.git
+cd TrackSensei-Telemetry
+```
 
-Latitude and Longitude parsing from GPGGA sentences
+### Running on macOS:
+```bash
+brew install python
 
-Modular design for future sensor integration (acceleration, elevation, etc.)
+# Intel Macs:
+curl -sSL https://install.python-poetry.org | /usr/local/bin/python3
 
-💠 Project Structure
+# Apple Silicon (M1/M2):
+curl -sSL https://install.python-poetry.org | /opt/homebrew/bin/python3
+```
 
-TrackSensei/
-├── app/
-│   ├── __init__.py
-│   ├── main.py               # Entry point for data logging
-│   ├── gps_functions.py      # GPS parsing and serial handling
-├── data/
-│   └── gps_data.txt          # Logged raw GPS data with timestamps
-├── docs/
-│   └── setup.md              # Setup instructions for Jetson Nano
-├── requirements.txt
-└── README.md
+Then install project dependencies:
+```bash
+poetry install
+```
 
-⚙️ Getting Started
+---
 
-git clone https://github.com/rudysuarez1/TrackSensei.git
-cd TrackSensei
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python3 app/main.py
+### 2. Environment Configuration
 
-🧹 Dependencies
+Create a `.env` file from the example:
+```bash
+cp .env.example .env
+```
 
-pynmea2 – For parsing NMEA GPS sentences
+Update your `.env` file to match your Jetson Nano setup:
+```env
+GPS_PORT=/dev/ttyTHS1
+```
 
-pyserial – For communicating over UART/Serial
+---
 
-(see requirements.txt)
+## ✅ Pre-commit and Code Quality
 
-🧱 Built With
+Install pre-commit hooks:
 
-Jetson Nano 2GB
+```bash
+poetry run pre-commit install
+```
 
-Python 3.8+
+To run all code quality checks manually:
 
-Waveshare GPS HAT (LC29H)
+```bash
+poetry run pre-commit run --all-files
+poetry run pyright
+poetry run pytest
+poetry run pytest --cov
+```
 
-Pop!_OS (for development environment)
+Or all together:
 
-🚧 Roadmap
+```bash
+poetry run pre-commit run --all-files && poetry run pyright && poetry run pytest
+```
 
+---
 
+## 🧪 Running Tests
 
-🤝 Contributing
+```bash
+poetry run pytest
+poetry run pytest --cov
+```
 
-Open to contributions once hardware support is stabilized. Feel free to open issues or PRs!
+---
+
+## 🧪 First-Time Dev Quickstart
+
+```bash
+poetry shell
+poetry run python -m app
+```
+
+This runs the telemetry app and starts logging GPS data from your configured device.
+
+---
+
+## 💧 Tech Stack
+
+- Python 3.10+
+- Poetry
+- Pyright
+- Pre-commit
+- Pytest
+- pynmea2
+- python-dotenv
